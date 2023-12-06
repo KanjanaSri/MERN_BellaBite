@@ -57,7 +57,12 @@ function Footer() {
               {" "}
               unDraw
             </a>{" "}
-            for the illustrations !
+            for the illustrations, and
+            <a rel="noreferrer" href="https://unsplash.com/" target="_blank">
+              {" "}
+              Unsplash
+            </a>{" "}
+            for Images.
           </div>
         </div>
       </div>

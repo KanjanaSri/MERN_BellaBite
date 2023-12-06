@@ -1,12 +1,12 @@
 import React from "react";
 import classes from "./hero.module.css";
 import { AiOutlineArrowDown } from "react-icons/ai";
-import lunchBreak from "../../assets/lunch_break.svg";
+import meal from "../../assets/meal.svg";
 
 function Hero() {
   return (
     <section
-      style={{ height: "200vh" }}
+      // style={{ height: "100vh" }}
       id="home"
       className={classes.container}
     >
@@ -35,7 +35,7 @@ function Hero() {
         </div>
 
         <div className={classes.right}>
-          <img src={lunchBreak} alt="" className={classes.manEatingImg} />
+          <img src={meal} alt="" className={classes.manEatingImg} />
         </div>
       </div>
     </section>

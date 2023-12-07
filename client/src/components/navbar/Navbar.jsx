@@ -1,14 +1,23 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import classes from "./navbar.module.css";
 import { FiUser, FiShoppingCart } from "react-icons/fi";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/authSlice";
 
 function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   window.onscroll = () => {
     setIsScrolled(window.scrollY === 0 ? false : true);
     return () => (window.onscroll = null);
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/login");
   };
 
   return (
@@ -23,7 +32,7 @@ function Navbar() {
         <div className={classes.center}>
           <ul className={classes.list}>
             <li className={classes.listItem}>
-              <a href="#">Home</a>
+              <a href="/">Home</a>
             </li>
             <li className={classes.listItem}>
               <a href="#contacts">Contacts</a>
@@ -47,7 +56,9 @@ function Navbar() {
             <div className={classes.cartQuantity}>0</div>
           </Link>
 
-          <button className={classes.logout}>Logout</button>
+          <button onClick={handleLogout} className={classes.logout}>
+            Logout
+          </button>
         </div>
       </div>
     </div>

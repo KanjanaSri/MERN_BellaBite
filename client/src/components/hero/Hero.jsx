@@ -5,11 +5,7 @@ import meal from "../../assets/meal.svg";
 
 function Hero() {
   return (
-    <section
-      // style={{ height: "100vh" }}
-      id="home"
-      className={classes.container}
-    >
+    <section id="home" className={classes.container}>
       <div className={classes.wrapper}>
         <div className={classes.left}>
           <h2 className={classes.title}>Explore Our Culinary Wonders</h2>

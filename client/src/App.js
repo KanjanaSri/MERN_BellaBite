@@ -1,5 +1,6 @@
+import { useEffect } from "react";
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 
@@ -13,6 +14,12 @@ import Cart from "./components/cart/Cart";
 import Checkout from "./components/checkout/Checkout";
 
 function App() {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
     <div>
       <Navbar />
@@ -23,7 +30,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/create" element={<Create />} />v
         <Route path="/food/:id" element={<FoodDetails />} />
-        <Route path="/foods/:id" element={<FoodCatalog />} />
+        <Route path="/foods/:category" element={<FoodCatalog />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
       </Routes>

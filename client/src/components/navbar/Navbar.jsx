@@ -26,7 +26,7 @@ function Navbar() {
       <div className={classes.wrapper}>
         <div className={classes.left}>
           <Link to="/" className={classes.title}>
-            Foodable
+            BellaBite Fusion
           </Link>
         </div>
 

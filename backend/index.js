@@ -10,7 +10,12 @@ const app = express();
 // connect our db
 mongoose
   .connect(process.env.MONGO_URL)
-  .then(console.log("DB is successfully connected"));
+  .then(() => {
+    console.log("DB is successfully connected");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 // routes & middlewares
 // fix error from runing on differnt ports (server on 4000 / client on 3000)

@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import classes from "./navbar.module.css";
 import { FiUser, FiShoppingCart } from "react-icons/fi";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/authSlice";
 
 function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { products } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -35,13 +36,13 @@ function Navbar() {
               <a href="/">Home</a>
             </li>
             <li className={classes.listItem}>
-              <a href="#contacts">Contacts</a>
+              <a href="/#contacts">Contacts</a>
             </li>
             <li className={classes.listItem}>
-              <a href="#foods">Foods</a>
+              <a href="/#foods">Foods</a>
             </li>
             <li className={classes.listItem}>
-              <a href="#faq">FAQ</a>
+              <a href="/#faq">FAQ</a>
             </li>
             <li className={classes.listItem}>
               <Link to="/create">Create</Link>
@@ -53,7 +54,7 @@ function Navbar() {
           <FiUser className={classes.userIcon} />
           <Link to="/cart" className={classes.cartContainer}>
             <FiShoppingCart className={classes.cartIcon} />
-            <div className={classes.cartQuantity}>0</div>
+            <div className={classes.cartQuantity}>{products.length}</div>
           </Link>
 
           <button onClick={handleLogout} className={classes.logout}>

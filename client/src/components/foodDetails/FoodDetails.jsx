@@ -32,9 +32,9 @@ function FoodDetails() {
 
   const changeQuantity = (command) => {
     if (command === "decrement") {
-      if (quantity !== 1) return setQuantity((prev) => prev - 1);
+      if (quantity !== 1) return setQuantity((prev) => (prev -= 1));
     } else if (command === "increment") {
-      if (quantity < 21) return setQuantity((prev) => prev + 1);
+      if (quantity < 21) return setQuantity((prev) => (prev += 1));
     }
   };
 

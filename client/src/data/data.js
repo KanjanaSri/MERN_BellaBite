@@ -45,7 +45,6 @@ export const foodTypes = [
   },
 ];
 
-// 24 foods (6 burger, 6 gyros, 6 pizza, 6 pasta)
 export const foods = [
   {
     name: "Sandwich 1",

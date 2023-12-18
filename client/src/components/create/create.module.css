@@ -43,7 +43,7 @@
   margin-bottom: 0.5rem;
 }
 
-.inputWrapperImage span {
+.inputWrapperImage .upload {
   display: inline-block;
   padding: 0.5rem 1rem;
   background-color: teal;
@@ -52,13 +52,16 @@
   cursor: pointer;
   transition: 150ms all;
   border-radius: 16px;
-  margin: 0.1rem 4.75rem;
+  margin: 0.1rem 4.4rem;
 }
 
-.inputWrapperImage span:hover {
+.inputWrapperImage .upload:hover {
   background-color: #fff;
   color: teal;
   border-color: teal;
+}
+.asterisk {
+  color: #be3144;
 }
 
 .imageName {
@@ -110,4 +113,14 @@
   background-color: #fff;
   color: #f76e11;
   border-color: #f76e11;
+}
+
+.admin h1 {
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.admin p {
+  color: #f76e11;
+  text-align: center;
 }

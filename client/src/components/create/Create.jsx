@@ -15,6 +15,7 @@ function Create() {
   const navigate = useNavigate();
 
   const { token } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
 
   const onChangeFile = async (e) => {
     setImage(e.target.files[0]);
@@ -70,96 +71,111 @@ function Create() {
 
   return (
     <div className={classes.container}>
-      <div className={classes.wrapper}>
-        <h2 className={classes.title}>Create food</h2>
-        <form onSubmit={handleCreateProduct} encType="multipart/form-data">
-          <div className={classes.inputWrapper}>
-            <label>Title:</label>
-            <input
-              type="text"
-              placeholder="Title..."
-              className={classes.input}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </div>
+      {!user?.isAdmin && (
+        <div className={classes.admin}>
+          <h1>You must be logged in as an Admin</h1>
+          <p>admin@gmail.com </p>
+          <p>password: abc123$</p>
+        </div>
+      )}
 
-          <div className={classes.inputWrapper}>
-            <label>Description: </label>
-            <input
-              type="text"
-              placeholder="Description..."
-              className={classes.input}
-              onChange={(e) => setDesc(e.target.value)}
-            />
-          </div>
+      {user?.isAdmin && (
+        <div className={classes.wrapper}>
+          <h2 className={classes.title}>Create food</h2>
+          <form onSubmit={handleCreateProduct} encType="multipart/form-data">
+            <div className={classes.inputWrapper}>
+              <label>Title:</label>
+              <input
+                type="text"
+                required
+                placeholder="Title..."
+                className={classes.input}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </div>
 
-          <div className={classes.inputWrapper}>
-            <label>Category: </label>
-            <input
-              type="text"
-              placeholder="Category..."
-              className={classes.input}
-              onChange={(e) => setCategory(e.target.value)}
-            />
-          </div>
+            <div className={classes.inputWrapper}>
+              <label>Description: </label>
+              <input
+                type="text"
+                required
+                placeholder="Description..."
+                className={classes.input}
+                onChange={(e) => setDesc(e.target.value)}
+              />
+            </div>
 
-          <div className={classes.inputWrapperImage}>
-            <label htmlFor="image" className={classes.labelFileInput}>
-              Image:{" "}
-              <span>
-                Upload <FiUpload />
-              </span>
-            </label>
-            <input
-              type="file"
-              id="image"
-              placeholder="Image..."
-              className={classes.input}
-              onChange={onChangeFile}
-              style={{ display: "none" }}
-            />
-            {image && (
-              <p className={classes.imageName}>
-                {image.name}{" "}
-                <AiOutlineCloseCircle
-                  onClick={handleCloseImg}
-                  className={classes.closeIcon}
-                />
-              </p>
-            )}
-          </div>
+            <div className={classes.inputWrapper}>
+              <label>Category: </label>
+              <input
+                type="text"
+                required
+                placeholder="Sandwich / Salad / Pizza /Pasta"
+                className={classes.input}
+                onChange={(e) => setCategory(e.target.value)}
+              />
+            </div>
 
-          <div className={classes.inputWrapper}>
-            <label>Price: </label>
-            <input
-              type="number"
-              step={0.01}
-              placeholder="Price..."
-              className={classes.input}
-              onChange={(e) => setPrice(e.target.value)}
-            />
-          </div>
+            <div className={classes.inputWrapperImage}>
+              <label htmlFor="image" className={classes.labelFileInput}>
+                Image: <span className={classes.asterisk}>&#42;</span>
+                <span className={classes.upload}>
+                  Upload <FiUpload />
+                </span>
+              </label>
+              <input
+                type="file"
+                id="image"
+                required
+                placeholder="Image..."
+                className={classes.input}
+                onChange={onChangeFile}
+                style={{ display: "none" }}
+              />
+              {image && (
+                <p className={classes.imageName}>
+                  {image.name}{" "}
+                  <AiOutlineCloseCircle
+                    onClick={handleCloseImg}
+                    className={classes.closeIcon}
+                  />
+                </p>
+              )}
+            </div>
 
-          <div className={classes.inputWrapper}>
-            <label>Review: </label>
-            <input
-              type="number"
-              step={0.1}
-              min={1}
-              max={5}
-              placeholder="Review..."
-              className={classes.input}
-              onChange={(e) => setReview(e.target.value)}
-            />
-          </div>
+            <div className={classes.inputWrapper}>
+              <label>Price: </label>
+              <input
+                type="number"
+                required
+                step={0.01}
+                placeholder="Price..."
+                className={classes.input}
+                onChange={(e) => setPrice(e.target.value)}
+              />
+            </div>
 
-          <div className={classes.buttonWrapper}>
-            <button type="submit" className={classes.submitBtn}>
-              Submit
-            </button>
-          </div>
-        </form>
-      </div>
+            <div className={classes.inputWrapper}>
+              <label>Review: </label>
+              <input
+                type="number"
+                step={0.1}
+                min={1}
+                max={5}
+                placeholder="Review..."
+                className={classes.input}
+                onChange={(e) => setReview(e.target.value)}
+              />
+            </div>
+
+            <div className={classes.buttonWrapper}>
+              <button type="submit" className={classes.submitBtn}>
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
     </div>
   );
 }

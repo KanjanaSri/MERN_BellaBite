@@ -8,6 +8,7 @@ import { logout } from "../../redux/authSlice";
 function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { products } = useSelector((state) => state.cart);
+  const { token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -18,6 +19,10 @@ function Navbar() {
 
   const handleLogout = () => {
     dispatch(logout());
+    navigate("/login");
+  };
+
+  const handleLogin = () => {
     navigate("/login");
   };
 
@@ -57,9 +62,15 @@ function Navbar() {
             <div className={classes.cartQuantity}>{products.length}</div>
           </Link>
 
-          <button onClick={handleLogout} className={classes.logout}>
-            Logout
-          </button>
+          {token ? (
+            <button onClick={handleLogout} className={classes.logInOut}>
+              Logout
+            </button>
+          ) : (
+            <button onClick={handleLogin} className={classes.logInOut}>
+              Login
+            </button>
+          )}
         </div>
       </div>
     </div>
